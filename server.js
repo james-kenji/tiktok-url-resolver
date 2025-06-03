@@ -41,7 +41,12 @@ app.post('/api/resolve', async (req, res) => {
   res.json({ results });
 });
 
-// 测试接口
+// 健康检查接口（Render 推荐）
+app.get('/health', (req, res) => {
+  res.send('OK');
+});
+
+// 测试接口（可选）
 app.get('/', (req, res) => {
   res.json({ status: 'ok', message: '短链解析服务已启动' });
 });
@@ -50,7 +55,4 @@ app.get('/', (req, res) => {
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`🚀 解析服务已启动：http://localhost:${PORT}`);
-});
-app.get('/health', (req, res) => {
-  res.send('OK');
 });
